@@ -1,159 +1,151 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Management System</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 900px; margin: 0 auto; padding: 20px; }
-        pre { background-color: #f6f8fa; border-radius: 6px; padding: 16px; overflow-x: auto; }
-        code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 85%; color: #24292e; background-color: rgba(27,31,35,.05); border-radius: 3px; padding: .2em .4em; }
-        pre code { background-color: transparent; padding: 0; }
-        h1, h2, h3, h4, h5, h6 { border-bottom: 1px solid #eaecef; padding-bottom: .3em; margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; }
-        ul, ol { padding-left: 2em; }
-        li { margin-bottom: 8px; }
-    </style>
-</head>
-<body>
+# Hospital Management System (MERN Stack MVP)
 
-    <h1>Hospital Management System (MERN Stack MVP)</h1>
+## Features Implemented
 
-    <h2>Features Implemented</h2>
-    <ul>
-        <li>User authentication (JWT-based) with role-based access (patient, doctor, admin)</li>
-        <li>Appointment booking and management</li>
-        <li>Encrypted medical records storage</li>
-        <li>Encrypted billing system</li>
-        <li>Real-time messaging between patients and doctors</li>
-    </ul>
+* User authentication (JWT-based) with role-based access (patient, doctor, admin)
+* Appointment booking and management
+* Encrypted medical records storage
+* Encrypted billing system
+* Real-time messaging between patients and doctors
 
-    <h2>Tech Stack</h2>
-    <ul>
-        <li>Frontend: React.js with React Router</li>
-        <li>Backend: Node.js with Express.js</li>
-        <li>Database: MongoDB with Mongoose</li>
-        <li>Authentication: JWT tokens</li>
-        <li>Encryption: AES encryption for sensitive data</li>
-        <li>Real-time: Socket.io for notifications and messaging</li>
-    </ul>
+## Tech Stack
 
-    <h2>Setup Instructions</h2>
-    <h3>Prerequisites</h3>
-    <ul>
-        <li>Node.js installed</li>
-        <li>MongoDB installed and running</li>
-    </ul>
+* **Frontend:** React.js with React Router
+* **Backend:** Node.js with Express.js
+* **Database:** MongoDB with Mongoose
+* **Authentication:** JWT tokens
+* **Encryption:** AES encryption for sensitive data
+* **Real-time:** Socket.io for notifications and messaging
 
-    <h3>Backend Setup</h3>
-    <ol>
-        <li>Navigate to the server directory:
-            <pre><code>cd server</code></pre>
-        </li>
-        <li>Install dependencies:
-            <pre><code>npm install</code></pre>
-        </li>
-        <li>Make sure MongoDB is running on your system</li>
-        <li>Start the backend server:
-            <pre><code>npm start</code></pre>
-            <p>The server will run on http://localhost:5000</p>
-        </li>
-    </ol>
+## Setup Instructions
 
-    <h3>Frontend Setup</h3>
-    <ol>
-        <li>Navigate to the client directory:
-            <pre><code>cd client</code></pre>
-        </li>
-        <li>Install dependencies:
-            <pre><code>npm install</code></pre>
-        </li>
-        <li>Start the React development server:
-            <pre><code>npm start</code></pre>
-            <p>The frontend will run on http://localhost:3000</p>
-        </li>
-    </ol>
+### Prerequisites
 
-    <h2>Usage</h2>
-    <h3>User Roles</h3>
-    <ul>
-        <li><strong>Patient</strong>: Can book appointments, view medical records, view billing, and chat with doctors</li>
-        <li><strong>Doctor</strong>: Can view appointments, add medical records, create bills, and chat with patients</li>
-        <li><strong>Admin</strong>: Can manage all appointments and billing records</li>
-    </ul>
+* Node.js installed
+* MongoDB installed and running
 
-    <h3>API Endpoints</h3>
-    <ul>
-        <li><code>POST /api/users/register</code> - Register new user</li>
-        <li><code>POST /api/users/login</code> - Login user</li>
-        <li><code>GET /api/users/doctors</code> - Get all doctors</li>
-        <li><code>GET /api/users/patients</code> - Get all patients (protected)</li>
-        <li><code>POST /api/appointments</code> - Create appointment (protected)</li>
-        <li><code>GET /api/appointments</code> - Get user appointments (protected)</li>
-        <li><code>POST /api/records</code> - Create medical record (doctors only)</li>
-        <li><code>GET /api/records</code> - Get user medical records (protected)</li>
-        <li><code>POST /api/billing</code> - Create billing record (admin/doctor only)</li>
-        <li><code>GET /api/billing</code> - Get user billing records (protected)</li>
-    </ul>
+### Backend Setup
 
-    <h3>Security Features</h3>
-    <ul>
-        <li>Password hashing with bcrypt</li>
-        <li>JWT token authentication</li>
-        <li>AES encryption for medical records and billing data</li>
-        <li>Role-based access control</li>
-    </ul>
+1. Navigate to the server directory:
 
-    <h3>Real-time Features</h3>
-    <ul>
-        <li>Socket.io for real-time chat between patients and doctors</li>
-        <li>Notification system for new appointments</li>
-    </ul>
+```bash
+cd server
+```
 
-    <h2>Environment Variables</h2>
-    <p>The .env file contains:</p>
-    <ul>
-        <li><code>PORT</code>: Server port (default: 5000)</li>
-        <li><code>MONGO_URI</code>: MongoDB connection string</li>
-        <li><code>JWT_SECRET</code>: Secret key for JWT tokens</li>
-        <li><code>AES_KEY</code>: AES encryption key (32 bytes hex)</li>
-        <li><code>AES_IV</code>: AES initialization vector (16 bytes hex)</li>
-    </ul>
+2. Install dependencies:
 
-    <h2>Project Structure</h2>
-    <pre><code>hospital-mgmt/
-├── client/                 # React frontend
+```bash
+npm install
+```
+
+3. Make sure MongoDB is running on your system.
+
+4. Start the backend server:
+
+```bash
+npm start
+```
+
+The server will run on `http://localhost:5000`.
+
+### Frontend Setup
+
+1. Navigate to the client directory:
+
+```bash
+cd client
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the React development server:
+
+```bash
+npm start
+```
+
+The frontend will run on `http://localhost:3000`.
+
+## Usage
+
+### User Roles
+
+* **Patient:** Can book appointments, view medical records, view billing, and chat with doctors
+* **Doctor:** Can view appointments, add medical records, create bills, and chat with patients
+* **Admin:** Can manage all appointments and billing records
+
+### API Endpoints
+
+* `POST /api/users/register` - Register new user
+* `POST /api/users/login` - Login user
+* `GET /api/users/doctors` - Get all doctors
+* `GET /api/users/patients` - Get all patients (protected)
+* `POST /api/appointments` - Create appointment (protected)
+* `GET /api/appointments` - Get user appointments (protected)
+* `POST /api/records` - Create medical record (doctors only)
+* `GET /api/records` - Get user medical records (protected)
+* `POST /api/billing` - Create billing record (admin/doctor only)
+* `GET /api/billing` - Get user billing records (protected)
+
+## Security Features
+
+* Password hashing with `bcrypt`
+* JWT token authentication
+* AES encryption for medical records and billing data
+* Role-based access control
+
+## Real-time Features
+
+* `Socket.io` for real-time chat between patients and doctors
+* Notification system for new appointments
+
+## Environment Variables
+
+The `.env` file contains:
+
+* `PORT`: Server port (default: 5000)
+* `MONGO_URI`: MongoDB connection string
+* `JWT_SECRET`: Secret key for JWT tokens
+* `AES_KEY`: AES encryption key (32 bytes hex)
+* `AES_IV`: AES initialization vector (16 bytes hex)
+
+## Project Structure
+
+```
+hospital-mgmt/
+├── client/ # React frontend
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── auth/       # Login/Register components
-│   │   │   ├── dashboard/  # Dashboard components
+│   │   │   ├── auth/ # Login/Register components
+│   │   │   ├── dashboard/ # Dashboard components
 │   │   │   ├── appointments/
 │   │   │   ├── records/
 │   │   │   ├── billing/
 │   │   │   └── chat/
 │   │   └── App.js
 │   └── package.json
-├── server/                 # Node.js backend
-│   ├── controllers/        # Business logic
-│   ├── models/           # Mongoose schemas
-│   ├── routes/           # API endpoints
-│   ├── middleware/         # Auth middleware
-│   ├── utils/            # Encryption utilities
-│   ├── server.js         # Main server file
+├── server/ # Node.js backend
+│   ├── controllers/ # Business logic
+│   ├── models/ # Mongoose schemas
+│   ├── routes/ # API endpoints
+│   ├── middleware/ # Auth middleware
+│   ├── utils/ # Encryption utilities
+│   ├── server.js # Main server file
 │   └── package.json
-└── .env                  # Environment variables
-</code></pre>
+└── .env # Environment variables
+```
 
-    <h2>Next Steps for Production</h2>
-    <ol>
-        <li>Add input validation and sanitization</li>
-        <li>Implement proper error handling and logging</li>
-        <li>Add rate limiting and security headers</li>
-        <li>Set up production database</li>
-        <li>Add email notifications</li>
-        <li>Implement file upload for medical documents</li>
-        <li>Add comprehensive testing</li>
-        <li>Set up CI/CD pipeline</li>
-    </ol>
-    
-</body>
-</html>
+## Next Steps for Production
+
+1. Add input validation and sanitization
+2. Implement proper error handling and logging
+3. Add rate limiting and security headers
+4. Set up production database
+5. Add email notifications
+6. Implement file upload for medical documents
+7. Add comprehensive testing
+8. Set up CI/CD pipeline
