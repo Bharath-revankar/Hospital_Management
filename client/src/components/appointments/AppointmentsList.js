@@ -4,7 +4,7 @@ import axios from "axios";
 const AppointmentsList = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -15,7 +15,7 @@ const AppointmentsList = () => {
         setAppointments(res.data);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch appointments');
+        setError("Failed to fetch appointments");
         setLoading(false);
         console.error(err.response?.data);
       }
@@ -23,34 +23,30 @@ const AppointmentsList = () => {
     fetchAppointments();
   }, []);
 
-  if (loading) return <div>Loading appointments...</div>;
-  if (error) return <div style={{color: 'red'}}>{error}</div>;
+  if (loading) return <div className="loading">Loading appointments...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
-    <div style={{ margin: '20px 0', padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
+    <div>
       <h3>Your Appointments</h3>
       {appointments.length === 0 ? (
         <p>No appointments found.</p>
       ) : (
         <div>
           {appointments.map((apt) => (
-            <div key={apt._id} style={{ 
-              padding: '15px', 
-              margin: '10px 0', 
-              border: '1px solid #ddd', 
-              borderRadius: '5px',
-              backgroundColor: '#f9f9f9'
-            }}>
-              <p><strong>Doctor:</strong> {apt.doctor?.name || 'N/A'}</p>
-              <p><strong>Patient:</strong> {apt.patient?.name || 'N/A'}</p>
-              <p><strong>Date:</strong> {new Date(apt.date).toLocaleString()}</p>
-              <p><strong>Status:</strong> 
-                <span style={{ 
-                  color: apt.status === 'confirmed' ? 'green' : 
-                         apt.status === 'pending' ? 'orange' : 'red',
-                  fontWeight: 'bold',
-                  marginLeft: '5px'
-                }}>
+            <div key={apt._id} className="appointment-card">
+              <div className="item-header">
+                <strong>Doctor:</strong> {apt.doctor?.name || "N/A"}
+              </div>
+              <p>
+                <strong>Patient:</strong> {apt.patient?.name || "N/A"}
+              </p>
+              <p>
+                <strong>Date:</strong> {new Date(apt.date).toLocaleString()}
+              </p>
+              <p>
+                <strong>Status:</strong>
+                <span className={`appointment-status status-${apt.status}`}>
                   {apt.status}
                 </span>
               </p>

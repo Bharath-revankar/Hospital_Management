@@ -4,41 +4,46 @@ import MedicalRecordForm from "../records/MedicalRecordForm";
 import MedicalRecordsList from "../records/MedicalRecordsList";
 import BillingForm from "../billing/BillingForm";
 import BillingList from "../billing/BillingList";
+import "./DoctorDashboard.css";
 
 const DoctorDashboard = () => {
-  const logout = () => {
-    localStorage.removeItem('token');
-    window.location.href = '/login';
-  };
-
   return (
-    <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+    <div className="doctor-dashboard">
+      <div className="dashboard-header">
         <h1>Doctor Dashboard</h1>
-        <button 
-          onClick={logout}
-          style={{ 
-            padding: '8px 16px', 
-            backgroundColor: '#dc3545', 
-            color: 'white', 
-            border: 'none', 
-            borderRadius: '3px',
-            cursor: 'pointer'
-          }}
-        >
-          Logout
-        </button>
+        <p>Manage your patients and medical practice</p>
       </div>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-        <div>
-          <AppointmentsList />
-          <MedicalRecordForm />
-          <BillingForm />
+
+      <div className="dashboard-grid">
+        <div className="dashboard-section">
+          <div className="section-header">Patient Appointments</div>
+          <div className="section-content">
+            <AppointmentsList />
+          </div>
         </div>
-        <div>
-          <MedicalRecordsList />
-          <BillingList />
+
+        <div className="dashboard-section">
+          <div className="section-header">Medical Records</div>
+          <div className="section-content">
+            <MedicalRecordsList />
+          </div>
+        </div>
+
+        <div className="dashboard-section">
+          <div className="section-header">Add Medical Record</div>
+          <div className="section-content">
+            <MedicalRecordForm />
+          </div>
+        </div>
+
+        <div className="dashboard-section">
+          <div className="section-header">Billing Management</div>
+          <div className="section-content">
+            <BillingForm />
+            <div style={{ marginTop: "20px" }}>
+              <BillingList />
+            </div>
+          </div>
         </div>
       </div>
     </div>

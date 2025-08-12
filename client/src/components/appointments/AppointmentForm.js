@@ -8,8 +8,8 @@ const AppointmentForm = () => {
   });
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   useEffect(() => {
     // Fetch doctors to populate the dropdown
@@ -19,7 +19,7 @@ const AppointmentForm = () => {
         setDoctors(res.data);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch doctors');
+        setError("Failed to fetch doctors");
         setLoading(false);
         console.error(err.response?.data);
       }
@@ -34,67 +34,60 @@ const AppointmentForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
     try {
       const res = await axios.post("/api/appointments", formData, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       });
-      setSuccess('Appointment booked successfully!');
+      setSuccess("Appointment booked successfully!");
       setFormData({ doctor: "", date: "" });
       // Optionally refresh the appointments list
       window.location.reload();
     } catch (err) {
-      setError(err.response?.data?.msg || 'Failed to book appointment');
+      setError(err.response?.data?.msg || "Failed to book appointment");
       console.error(err.response?.data);
     }
   };
 
-  if (loading) return <div>Loading doctors...</div>;
+  if (loading) return <div className="loading">Loading doctors...</div>;
 
   return (
-    <div style={{ margin: '20px 0', padding: '20px', border: '1px solid #ccc', borderRadius: '5px' }}>
+    <div>
       <h3>Book New Appointment</h3>
-      {error && <div style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
-      {success && <div style={{color: 'green', marginBottom: '10px'}}>{success}</div>}
-      
-      <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px' }}>
-        <select 
-          name="doctor" 
-          value={doctor} 
-          onChange={onChange} 
-          required
-          style={{ padding: '8px', fontSize: '14px' }}
-        >
-          <option value="">Select a Doctor</option>
-          {doctors.map((doc) => (
-            <option key={doc._id} value={doc._id}>
-              {doc.name}
-            </option>
-          ))}
-        </select>
-        
-        <input
-          type="datetime-local"
-          name="date"
-          value={date}
-          onChange={onChange}
-          required
-          style={{ padding: '8px', fontSize: '14px' }}
-        />
-        
-        <input 
-          type="submit" 
-          value="Book Appointment" 
-          style={{ 
-            padding: '10px', 
-            backgroundColor: '#007bff', 
-            color: 'white', 
-            border: 'none', 
-            borderRadius: '3px',
-            cursor: 'pointer'
-          }}
-        />
+      {error && <div className="error">{error}</div>}
+      {success && <div className="success">{success}</div>}
+
+      <form onSubmit={onSubmit} className="form-container">
+        <div className="form-group">
+          <select
+            name="doctor"
+            value={doctor}
+            onChange={onChange}
+            required
+            className="form-select"
+          >
+            <option value="">Select a Doctor</option>
+            {doctors.map((doc) => (
+              <option key={doc._id} value={doc._id}>
+                {doc.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <input
+            type="datetime-local"
+            name="date"
+            value={date}
+            onChange={onChange}
+            required
+            className="form-input"
+          />
+        </div>
+
+        <input type="submit" value="Book Appointment" className="btn-primary" />
       </form>
     </div>
   );
